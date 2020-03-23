@@ -13,6 +13,22 @@ def get_indices_of_item_weights(weights, length, limit):
     YOUR CODE HERE
     """
 
+    if length == 2 and weights[0] + weights[1] == limit:
+        return(1,0)
+
+    for i in range(length):
+        hash_table_insert(ht, weights[i], i)   
+
+    for i in range(length):
+        index = hash_table_retrieve(ht, limit - weights[i])
+        if index:
+            val1 = i
+            val2 = weights.index(limit - weights[i])
+            if val1 > val2:
+                return(val1, val2)
+            else:
+                return(val2,val1)
+
     return None
 
 
